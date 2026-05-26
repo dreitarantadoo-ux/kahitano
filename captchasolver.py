@@ -25,8 +25,11 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ---------- Configuration ----------
-# Set your bot token as environment variable or hardcode (not recommended)
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8351621086:AAEJTmQPqEC8w5LVqRfQNB1Ft43jMGAsec4")
+# Bot token must be set as environment variable TELEGRAM_BOT_TOKEN
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+if not BOT_TOKEN:
+    logging.error("TELEGRAM_BOT_TOKEN environment variable not set. Exiting.")
+    exit(1)
 
 # GoLogin / CaptchaAI settings
 fp = {
@@ -39,7 +42,7 @@ fp = {
 ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
 ixcynigga_api = "https://api.gologin.com"
 
-# Updated CaptchaAI API key
+# CaptchaAI API key
 captchaai_api_key = "xqt3tymkmfusnrh5nrngasbazt8grefo"
 
 # File paths
@@ -488,10 +491,6 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 
 # ---------- Main ----------
 def main():
-    if BOT_TOKEN == "YOUR_BOT_TOKEN_HERE":
-        logger.error("Please set your TELEGRAM_BOT_TOKEN environment variable.")
-        return
-
     application = Application.builder().token(BOT_TOKEN).build()
 
     application.add_handler(CommandHandler("get", get_command))
