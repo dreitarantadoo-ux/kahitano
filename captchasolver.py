@@ -40,7 +40,7 @@ ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 ixcynigga_api = "https://api.gologin.com"
 
 # Updated CaptchaAI API key
-captchaai_api_key = "jtmrtfrkvkgyd9wd0jbbckjsdkgsptrv"
+captchaai_api_key = "xqt3tymkmfusnrh5nrngasbazt8grefo"
 
 # File paths
 PROXIES_FILE = 'proxies.txt'
